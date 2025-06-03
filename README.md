@@ -1,25 +1,79 @@
-#  Plant Disease Detection using Deep Learning
+# 🌿 Plant Disease Detection using Deep Learning
 
-This project provides a web-based tool to detect plant diseases from leaf images using a deep learning model (ResNet50). It is trained on a labeled dataset of plant leaves and deployed using **Streamlit** for a clean and simple user interface.
+This project focuses on detecting plant leaf diseases using deep learning. By analyzing images of infected plant leaves, the model identifies the specific disease affecting the crop. The aim is to provide an efficient tool for early diagnosis, helping farmers and agronomists take preventive actions to reduce crop loss.
+
+---
+## 🌾 Disease Categories
+
+The model classifies images into one of the following **three plant disease categories**:
+
+1. **Corn (Maize) - Common Rust**  
+   - Caused by *Puccinia sorghi*, it manifests as orange to brown pustules on the leaf surface.
+   - Can cause significant reduction in photosynthetic activity and crop yield.
+
+2. **Potato - Early Blight**  
+   - A fungal disease caused by *Alternaria solani*.
+   - Presents as concentric dark spots on older leaves, leading to leaf drop and reduced tuber formation.
+
+3. **Tomato - Bacterial Spot**  
+   - Caused by *Xanthomonas campestris*.
+   - Appears as small water-soaked lesions that become necrotic, often causing extensive leaf damage and fruit blemishes.
+
+---
+## 🧠 Model Overview
+
+We developed and compared two models:
+
+### 🔹 Custom CNN Model
+- Built from scratch using Keras and TensorFlow.
+- Performs well on simple datasets but showed limited generalization capabilities.
+
+### 🔹 ResNet50 Model (Final Model)
+- A **ResNet50** architecture pretrained on ImageNet.
+- Fine-tuned on the plant disease dataset.
+- Demonstrated superior accuracy, robustness, and generalization.
+- Incorporates **data augmentation** techniques to improve performance on diverse real-world leaf images.
+
+➡️ **ResNet50 was selected for deployment due to its better overall performance.**
 
 ---
 
-##  Features
 
-- Upload a plant leaf image and detect the disease class
-- Uses a fine-tuned **ResNet50** model trained on image data
-- Deployed with **Streamlit** for interactive use
-- Simple and effective UI for users without technical background
+## 💻 Streamlit Web Application
+
+The trained ResNet model is deployed using a **Streamlit** web app with an intuitive interface for real-time predictions.
+
+### Features:
+- Upload a plant leaf image via the web UI.
+- Instantly receive disease classification with a confidence score.
+- Clear, minimalistic layout suitable for users without technical backgrounds.
+
+### 📷 UI Previews:
+- [Index Page](images/index_image.png)
+- [Result Page](images/result_image.png)
+
+---
+
+## ☁️ AWS Deployment
+
+The app is hosted on an **AWS EC2 instance**, making it publicly accessible.
+
+### Deployment Highlights:
+- Ubuntu-based EC2 instance with Python, Streamlit, and all required dependencies.
+- App served with `streamlit run app.py --server.port 8501 --server.address 0.0.0.0`.
+- Inbound rules configured to allow traffic on port 8501.
+- Seamless access from any browser via the instance’s public IP or domain name.
+
 
 ---
 
-## 🧠 Model Details
 
-- **Architecture**: ResNet50 (transfer learning with frozen base)
-- **Input Shape**: 128 × 128 × 3
-- **Framework**: TensorFlow / Keras
-- **Output**: 3-class softmax classifier (e.g., [Healthy, Disease A, Disease B])
-- **Performance**: [Add accuracy or evaluation results if available]
+To run this app locally:
 
----
+```bash
+git clone <your-repo-url>
+cd <your-repo-folder>
+pip install -r requirements.txt
+streamlit run app.py
+
 
